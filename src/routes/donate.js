@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Title from './views/title.js';
 import Body from './views/donate/body.js';
+import Footer from './views/footer';
 
 class Donate extends Component
 {
@@ -15,6 +16,7 @@ class Donate extends Component
         <div>
           <Title />
           <Body />
+          <Footer />
         </div>
     )
   }

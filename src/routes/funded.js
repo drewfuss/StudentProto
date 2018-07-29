@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Title from './views/title';
 import Body from './views/funded/body';
+import Footer from './views/footer';
 
 class Funded extends Component
 {
@@ -10,6 +11,7 @@ class Funded extends Component
       <div>
         <Title />
         <Body />
+        <Footer />
       </div>
     )
   }
