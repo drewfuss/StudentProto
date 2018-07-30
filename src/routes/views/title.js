@@ -10,6 +10,21 @@ class Title extends Component
     super(props);
   }
 
+  componentWillMount()
+  {
+  //  this.setState({user:"loggedIn"});
+  }
+
+  getLoggedIn()
+  {
+    return "Profile";
+  }
+
+  getLoggedOut()
+  {
+    return "Log In";
+  }
+
   render()
   {
     return (
@@ -24,7 +39,7 @@ class Title extends Component
               About Us
             </NavItem>
             <NavItem className="donate" href="#">
-              <Button bsStyle="primary" bsSize="large"  onClick={() => { window.location = '/donate'; }}>
+              <Button bsStyle="warning" bsSize="large"  onClick={() => { window.location = '/donate'; }}>
                 DONATE
               </Button>
             </NavItem>
@@ -32,7 +47,7 @@ class Title extends Component
               News
             </NavItem>
             <NavItem className='pull-right' href="/auth">
-              Sign In
+              {this.props.user ? this.getLoggedIn() : this.getLoggedOut() }
             </NavItem>
         </Nav>
         </Center>

@@ -2,9 +2,8 @@ p {
   text-align: center;
 }
 .footer_grid {
-  border-top: 1px solid black;
-  padding-top: 20px;
-  margin-top:20px;
+  /**border-top: 1px solid black;*/
+  padding-top: 30px;
 }
 .full-size {
   height:64px;
