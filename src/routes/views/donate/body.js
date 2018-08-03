@@ -18,7 +18,6 @@ class Body extends Component
   }
   render()
   {
-    console.log("RENDERING AGAIN");
     return (
       <Grid>
       <Row>

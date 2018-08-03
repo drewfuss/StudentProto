@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Row, Col } from 'react-bootstrap';
 
 class MenuItem extends Component
 {
@@ -11,7 +12,15 @@ class MenuItem extends Component
   {
     return (
       <div className="doner">
-        <p>{this.props.name}</p>
+        <Row>
+          <Col md={2} xs={2}>
+            <img className='thumbnail thumbnail-img'src={this.props.thumbnail}/>
+          </Col>
+          <Col className='push-left' md={10} xs={10}>
+            <p>{this.props.name}</p>
+            <p>Total: {this.props.total}</p>
+          </Col>
+        </Row>
       </div>
     )
   }

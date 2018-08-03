@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Center from 'react-center';
-import {Grid, Col, Row, ProgressBar, Button} from 'react-bootstrap';
+import {ProgressBar, Button} from 'react-bootstrap';
 
 let payed;
 let left;
@@ -10,8 +10,6 @@ class Doner extends Component
   constructor(props)
   {
     super(props);
-    payed = this.props.live.Paid;
-    left = this.props.live.Total;
   }
 
   render()

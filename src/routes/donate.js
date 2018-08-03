@@ -28,17 +28,16 @@ class Donate extends Component
         Paid: 20
       },
       onDeck: [
-          { id: 1, name: "Leanne Graham" },
-          { id: 2, name: "Ervin Howell" },
-          { id: 3, name: "Clementine Bauch" },
-          { id: 4, name: "Patricia Lebsack" }
+          { id: 1, name: "Leanne Graham", thumbnail:"https://cdn.onlinewebfonts.com/svg/img_191958.png",total:22000 },
+          { id: 2, name: "Ervin Howell", thumbnail:"https://cdn.onlinewebfonts.com/svg/img_191958.png",total:100 },
+          { id: 3, name: "Clementine Bauch", thumbnail:"https://cdn.onlinewebfonts.com/svg/img_191958.png",total:2400 },
+          { id: 4, name: "Patricia Lebsack", thumbnail:"https://cdn.onlinewebfonts.com/svg/img_191958.png",total:21200 }
         ]
     });
   }
 
   updateDonate(num)
   {
-    console.log("UPDATING");
     this.setState({
       live: {
         name:"Drew",
@@ -46,14 +45,10 @@ class Donate extends Component
         Paid: (this.state.live.Paid + num) % this.state.live.Total
       }
     });
-
-    console.log(this.state.live.Paid);
   }
 
   render()
   {
-    console.log("RENDERING");
-    console.log("Live:",this.state.live);
     return (
         <div>
           <Title />
