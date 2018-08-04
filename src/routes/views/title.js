@@ -10,11 +10,6 @@ class Title extends Component
     super(props);
   }
 
-  componentWillMount()
-  {
-  //  this.setState({user:"loggedIn"});
-  }
-
   getLoggedIn()
   {
     return "Profile";

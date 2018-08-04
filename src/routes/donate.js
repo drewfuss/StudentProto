@@ -51,7 +51,7 @@ class Donate extends Component
   {
     return (
         <div>
-          <Title />
+          <Title user={this.props.user}/>
           <Body onDeck = { this.state.onDeck } live={this.state.live} update = {this.updateDonate}/>
           <Footer />
         </div>
