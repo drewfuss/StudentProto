@@ -1,18 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Route from './routes/index.js';
-
-/*class App extends Component {
-  render() {
-    return (
-      <div>
-        <Title />
-        <div className = 'container'>
-          <Body />
-        </div>
-      </div>
-    );
-  }
-}*/
+// THIS IS CURRENTLY DOING NOTHING
+// I AM RENDERING THE ROUTE DIRECTLY FROM index.js
 
 export default () => (
   <Route />

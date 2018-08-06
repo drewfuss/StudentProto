@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default () => (
-  <p className='container'>News</p>
-);
+  <p>Contact us</p>
+)

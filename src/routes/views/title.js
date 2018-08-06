@@ -10,6 +10,16 @@ class Title extends Component
     super(props);
   }
 
+  getLoggedIn()
+  {
+    return "Profile";
+  }
+
+  getLoggedOut()
+  {
+    return "Log In";
+  }
+
   render()
   {
     return (
@@ -17,23 +27,23 @@ class Title extends Component
       <Navbar>
         <Center>
         <Nav>
-          <NavItem href="funded">
-            Funded
-          </NavItem>
-          <NavItem href="/about">
-            About Us
-          </NavItem>
-          <NavItem className="donate" href="#">
-            <Button bsStyle="primary" bsSize="large"  onClick={() => { window.location = '/donate'; }}>
-              DONATE
-            </Button>
-          </NavItem>
-          <NavItem href="/news">
-            News
-          </NavItem>
-          <NavItem className='pull-right' href="/auth">
-            Sign In
-          </NavItem>
+            <NavItem href="funded">
+              Funded
+            </NavItem>
+            <NavItem href="/about">
+              About Us
+            </NavItem>
+            <NavItem className="donate" href="#">
+              <Button bsStyle="warning" bsSize="large"  onClick={() => { window.location = '/donate'; }}>
+                DONATE
+              </Button>
+            </NavItem>
+            <NavItem href="/news">
+              News
+            </NavItem>
+            <NavItem className='pull-right' href="/auth">
+              {this.props.user ? this.getLoggedIn() : this.getLoggedOut() }
+            </NavItem>
         </Nav>
         </Center>
         </Navbar>
