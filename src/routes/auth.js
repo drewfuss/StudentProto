@@ -13,8 +13,7 @@ class Auth extends Component
   {
     return (
       <div>
-        <Title user={this.props.user}/>
-        <Body user={this.props.user} login={this.props.login} logout={this.props.logout}/>
+        <Body login={this.props.login} />
         <Footer />
       </div>
     )

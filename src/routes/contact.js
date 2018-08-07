@@ -6,7 +6,6 @@ import Footer from './views/footer';
 
 export default () => (
   <div>
-    <Title />
     <Body />
     <Footer />
   </div>

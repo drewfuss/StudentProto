@@ -9,7 +9,6 @@ class About extends Component
   {
     return (
       <div>
-        <Title />
         <Body />
         <Footer />
       </div>

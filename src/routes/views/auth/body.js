@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Button, Form, FormGroup, FormControl, ControlLabel, HelpBlock} from 'react-bootstrap';
+import {showNavMenuAction, closeNavMenuAction} from './../../../actions/actions.js';
+import {connect} from 'react-redux';
 
 class Body extends Component
 {
@@ -7,7 +9,6 @@ class Body extends Component
   {
     super(props);
     this.state={
-      user:this.props.user,
       email:'',
       password:''
     };
@@ -16,12 +17,16 @@ class Body extends Component
     this.updatePassword = this.updatePassword.bind(this);
   }
 
+  componentDidMount()
+  {
+    this.props.dispatch(closeNavMenuAction());
+  }
+
   showProfile()
   {
     return (
       <div>
         <p>Welcome, Drew</p>
-        <Button onClick={this.props.logout}>Log Out</Button>
       </div>
     )
   }
@@ -74,10 +79,17 @@ class Body extends Component
   {
     return (
       <div>
-        { this.state.user ? this.showProfile() : this.showAuth()}
+        { this.props.user ? this.showProfile() : this.showAuth()}
       </div>
     )
   }
 }
 
-export default Body;
+const mapStateToProps = (state) => {
+  return {
+    anchorEl:state.anchorEl,
+    user:state.user
+  };
+}
+
+export default connect(mapStateToProps)(Body);

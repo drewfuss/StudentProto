@@ -1,6 +1,10 @@
 p {
   text-align: center;
 }
+.well
+{
+  margin-top:40px;
+}
 .footer_grid {
   /**border-top: 1px solid black;*/
   padding-top: 30px;
