@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Button, Form, FormGroup, FormControl, ControlLabel, HelpBlock} from 'react-bootstrap';
 import {showNavMenuAction, closeNavMenuAction} from './../../../actions/actions.js';
 import {connect} from 'react-redux';
+import Login from './login';
 
 class Body extends Component
 {
@@ -53,7 +54,7 @@ class Body extends Component
   showAuth()
   {
     return (
-      <Form>
+      /**<Form>
       <FormGroup validationState={this.validateEmail()}>
         <ControlLabel>Email Address</ControlLabel>
         <FormControl
@@ -71,7 +72,8 @@ class Body extends Component
         />
         <Button onClick={() => this.props.login(this.state.email, this.state.password)}>Login</Button>
       </FormGroup>
-      </Form>
+      </Form>*/
+      <Login login={this.props.login} />
     )
   }
 
