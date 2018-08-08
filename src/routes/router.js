@@ -35,6 +35,7 @@ class Router extends Component {
         this.props.dispatch(authenticated(user));
       }
       else {
+        console.log("LOG OUT");
         this.props.dispatch(unauthenticated());
       }
    });

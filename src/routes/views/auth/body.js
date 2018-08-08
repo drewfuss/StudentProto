@@ -27,7 +27,7 @@ class Body extends Component
   {
     return (
       <div>
-        <p>Welcome, Drew</p>
+        <p>Welcome, {this.props.user.email}</p>
       </div>
     )
   }

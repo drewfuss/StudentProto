@@ -45,18 +45,19 @@ class Header extends Component
             <Center>
             <Toolbar>
             <Link to={'/funded'} style={{ textDecoration: 'none', color:'white' }}>
-               <Button><Typography color="secondary">Funded</Typography></Button>
+               <Button className='btnHeader' ><Typography color="secondary">Funded</Typography></Button>
             </Link>
             <Link to={'/news'} style={{ textDecoration: 'none', color:'white' }}>
-               <Button><Typography color="secondary">News</Typography></Button>
+               <Button className='btnHeader' ><Typography color="secondary">News</Typography></Button>
             </Link>
             <Link to={'/donate'} style={{ textDecoration: 'none', color:'white' }}>
-               <Button><Typography color="secondary">Donate</Typography></Button>
+               <Button className='btnHeader' variant="extendedFab" color="secondary" aria-label="Delete"><Typography color="primary">Donate</Typography></Button>
             </Link>
             <Link to={'/about'} style={{ textDecoration: 'none', color:'white' }}>
-               <Button><Typography color="secondary">How It Works</Typography></Button>
+               <Button className='btnHeader' ><Typography color="secondary">How It Works</Typography></Button>
             </Link>
             <IconButton
+              className='btnHeader'
               aria-haspopup="true"
               onClick={this.handleMenu}
               color="secondary">

@@ -13,6 +13,7 @@ export const authReducer = (state = initialState, action) =>
         user:action.payload
       };
     case 'LOG_OUT':
+      console.log("LOG_OUT|OUT");
       return {
         anchorEl:state.anchorEl,
         user:null
