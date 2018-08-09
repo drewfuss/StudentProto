@@ -1,0 +1,14 @@
+.inputAuth input {
+  font-size: 3em;
+}
+
+.inputAuth label {
+  font-size: 2em;
+}
+
+#btnRegister {
+  margin-top: 10px;
+}
+#colorRed {
+  color:red;
+}

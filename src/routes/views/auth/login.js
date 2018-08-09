@@ -2,15 +2,13 @@ import {Card, CardActions, CardContent, Button, Typography, TextField} from '@ma
 import React, {Component} from 'react';
 import {Grid, Col, Row} from 'react-bootstrap';
 import Center from 'react-center'
-import firebase, {googleAuth} from './../../../backend/firebase';
-import {authenticated, unauthenticated} from './../../../actions/actions';
+import firebase, {googleAuth, auth} from './../../../backend/firebase';
+import {clearautherror, onautherror} from './../../../actions/actions';
 import {connect} from 'react-redux';
 import { FacebookLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 import {PageHeader} from 'react-bootstrap';
+import './styles/login.css';
 
-const inputProps = {
-  fontSize: 300,
-};
 class Login extends Component
 {
 
@@ -18,13 +16,35 @@ class Login extends Component
   {
     super(props);
     this.state={
+      registering: this.props.registering,
       email:'',
-      password:''
+      password:'',
+      passRetype:''
     };
 
     this.updateEmail = this.updateEmail.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
+    this.updatePasswordRetype = this.updatePasswordRetype.bind(this);
     this.loginGoogle = this.loginGoogle.bind(this);
+  }
+
+  componentWillMount()
+  {
+    this.props.dispatch(clearautherror());
+  }
+
+  onCreate()
+  {
+    if(this.state.password != this.state.passRetype)
+    {
+      this.props.dispatch(onautherror('Passwords must match'));
+      return;
+    }
+    auth.createUserWithEmailAndPassword(this.state.email.trim(), this.state.password.trim()).catch(function(error) {
+      // Handle Errors here.
+      let errorMessage = error.message;
+      if(errorMessage) this.props.dispatch(onautherror(errorMessage));
+    }.bind(this));
   }
 
   loginGoogle()
@@ -33,20 +53,14 @@ class Login extends Component
       // This gives you a Google Access Token. You can use it to access the Google API.
       let token = result.credential.accessToken;
     }).catch(function(error) {
-        if(error)
-        {
-          alert(error.code);
-        }
-
       // // Handle Errors here.
       // let errorCode = error.code;
-      // let errorMessage = error.message;
+       if(error && error.message) this.props.dispatch(onautherror(error.message));
       // // The email of the user's account used.
       // let email = error.email;
       // // The firebase.auth.AuthCredential type that was used.
       // let credential = error.credential;
-      // alert(errorMessage);
-    });
+    }.bind(this));
   }
 
   updateEmail(e)
@@ -57,6 +71,28 @@ class Login extends Component
   updatePassword(e)
   {
     this.setState({password:e.target.value});
+  }
+  updatePasswordRetype(e)
+  {
+    this.setState({passRetype:e.target.value});
+  }
+
+  handleLogin()
+  {
+    this.props.dispatch(clearautherror());
+    if(this.state.registering)
+    {
+      this.setState({registering:null});
+      return;
+    }
+
+    this.props.login(this.state.email, this.state.password);
+  }
+
+  handleRegister()
+  {
+    this.props.dispatch(clearautherror());
+    this.setState({registering:true});
   }
 
   render()
@@ -70,32 +106,65 @@ class Login extends Component
             </PageHeader>
             <div className='row'>
               <TextField
-                className='col-xs-12'
-                 required
+                className='col-xs-12 inputAuth'
                  id="required"
                  label="Username"
                  margin="normal"
-                 inputStyle={{ fontSize: "50px" }}
                  onChange={this.updateEmail}
                />
              </div>
              <div className='row'>
               <TextField
-                className='col-xs-12'
+                className='col-xs-12 inputAuth'
                   id="required"
                   label="Password"
-                  inputProps={inputProps}
                   type="password"
                   autoComplete="current-password"
                   margin="normal"
                   onChange={this.updatePassword}
               />
             </div>
-            <Center>
-              <Button variant="outlined" color="primary" onClick={() => {this.props.login(this.state.email, this.state.password)}}>
-                Login
-              </Button>
-            </Center>
+            {this.state.registering ?
+
+            (
+                      <div>
+                       <div className='row'>
+                         <TextField
+                           className='col-xs-12 inputAuth'
+                             id="required"
+                             label="Retype Password"
+                             type="password"
+                             autoComplete="current-password"
+                             margin="normal"
+                             onChange={this.updatePasswordRetype}
+                         />
+                       </div>
+                       <Center>
+                         <Button className='col-xs-10' style={{fontSize:'1em'}} variant="outlined" color="primary" onClick={() => { this.onCreate()}}>
+                           Create Account
+                         </Button>
+                       </Center>
+                       <Center>
+                         <Button className='col-xs-10' id='btnRegister' style={{fontSize:'1em'}} variant="outlined" color="primary" onClick={() => {this.handleLogin()}}>
+                           Have Account? Login
+                         </Button>
+                       </Center>
+                       </div>
+                     ) : (
+                         <div>
+                         <Center>
+                           <Button className='col-xs-8'style={{fontSize:'1em'}} variant="outlined" color="primary" onClick={() => {this.handleLogin()}}>
+                             Login
+                           </Button>
+                         </Center>
+                         <Center>
+                           <Button className='col-xs-8' id='btnRegister'style={{fontSize:'1em'}} variant="outlined" color="primary" onClick={() => {this.handleRegister()}}>
+                             Register
+                           </Button>
+                         </Center>
+                         </div>
+                       )}
+            {this.props.authError ? (<Typography id='colorRed'>{this.props.authError}</Typography>) : null}
             <PageHeader className='text-center'>
               <small>OR</small>
             </PageHeader>
@@ -112,9 +181,16 @@ class Login extends Component
   }
 }
 
-const mapDispatchToProps = {
-  authenticated,
-  unauthenticated
-};
+// const mapDispatchToProps = {
+//   authenticated,
+//   unauthenticated
+// };
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapStateToProps = (state) => {
+  return {
+    authError:state.authError
+  };
+}
+export default connect(mapStateToProps)(Login);
+
+// export default connect(null, mapDispatchToProps)(Login);

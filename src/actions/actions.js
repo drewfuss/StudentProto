@@ -15,3 +15,13 @@ export function unauthenticated()
 {
   return {type:'LOG_OUT'}
 }
+
+export function onautherror(payload)
+{
+  return {type:'AUTH_ERROR', payload}
+}
+
+export function clearautherror()
+{
+  return {type:'CLEAR_AUTH_ERROR'}
+}

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+﻿<<<<<<< HEAD
 To begin working please execute the following commands in the root of the project directory.
   
   

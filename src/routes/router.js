@@ -12,7 +12,7 @@ import firebase, {auth} from './../backend/firebase.js';
 import Theme from './views/styles/headerTheme';
 import { MuiThemeProvider} from '@material-ui/core/styles';
 import {connect} from 'react-redux';
-import {authenticated, unauthenticated} from './../actions/actions.js';
+import {authenticated, unauthenticated, onautherror} from './../actions/actions.js';
 
 
 
@@ -27,6 +27,7 @@ class Router extends Component {
 
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
+    this.addAuthError = this.addAuthError.bind(this);
 
     // fetch current user
     auth.onAuthStateChanged((user) => {
@@ -41,13 +42,20 @@ class Router extends Component {
    });
   }
 
+  addAuthError = (message) =>
+  {
+    this.props.dispatch(onautherror(message));
+  }
+
   login(email, password)
   {
     auth.signInWithEmailAndPassword(email, password).catch(function(error) {
       // Handle Errors here.
-      console.log("damn");
-    });
+      this.props.dispatch(onautherror(error.message));
+    }.bind(this));
   }
+
+
 
   logout()
   {
