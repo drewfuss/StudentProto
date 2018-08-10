@@ -122,7 +122,6 @@ class Login extends Component
             <div className='row'>
               <TextField
                 className='col-xs-12 inputAuth'
-                 id="required"
                  label="Username"
                  margin="normal"
                  onChange={this.updateEmail}
@@ -131,7 +130,6 @@ class Login extends Component
              <div className='row'>
               <TextField
                 className='col-xs-12 inputAuth'
-                  id="required"
                   label="Password"
                   type="password"
                   autoComplete="current-password"
@@ -146,7 +144,6 @@ class Login extends Component
                        <div className='row'>
                          <TextField
                            className='col-xs-12 inputAuth'
-                             id="required"
                              label="Retype Password"
                              type="password"
                              autoComplete="current-password"
