@@ -2,7 +2,7 @@ import {Card, CardActions, CardContent, Button, Typography, TextField} from '@ma
 import React, {Component} from 'react';
 import {Grid, Col, Row} from 'react-bootstrap';
 import Center from 'react-center'
-import firebase, {googleAuth, auth} from './../../../backend/firebase';
+import firebase, {googleAuth, auth, facebookAuth} from './../../../backend/firebase';
 import {clearautherror, onautherror} from './../../../actions/actions';
 import {connect} from 'react-redux';
 import { FacebookLoginButton, GoogleLoginButton } from "react-social-login-buttons";
@@ -26,6 +26,7 @@ class Login extends Component
     this.updatePassword = this.updatePassword.bind(this);
     this.updatePasswordRetype = this.updatePasswordRetype.bind(this);
     this.loginGoogle = this.loginGoogle.bind(this);
+    this.loginFacebook = this.loginFacebook.bind(this);
   }
 
   componentWillMount()
@@ -60,6 +61,20 @@ class Login extends Component
       // let email = error.email;
       // // The firebase.auth.AuthCredential type that was used.
       // let credential = error.credential;
+    }.bind(this));
+  }
+
+  loginFacebook()
+  {
+    firebase.auth().signInWithPopup(facebookAuth).then(function(result) {
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    var token = result.credential.accessToken;
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      if(error && error.message) this.props.dispatch(onautherror(error.message));
+      // ...
     }.bind(this));
   }
 
@@ -172,7 +187,7 @@ class Login extends Component
               <GoogleLoginButton onClick={() => {this.loginGoogle()}} />
             </Center>
             <Center>
-              <FacebookLoginButton onClick={() => alert("Coming Soon")} />
+              <FacebookLoginButton onClick={() => {this.loginFacebook()}} />
             </Center>
         </CardContent>
       </Card>
