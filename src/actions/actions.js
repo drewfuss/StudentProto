@@ -25,3 +25,12 @@ export function clearautherror()
 {
   return {type:'CLEAR_AUTH_ERROR'}
 }
+
+export function onUpdateTotalDon(payload)
+{
+  return {type:'Update_DON', payload}
+}
+export function updateTotalFunded(payload)
+{
+  return {type:'Update_FUN', payload}
+}

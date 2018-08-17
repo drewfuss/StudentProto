@@ -18,12 +18,10 @@ class Header extends Component
   }
 
   handleMenu = event => {
-    console.log("handleMenu");
     this.props.dispatch(showNavMenuAction(event.currentTarget));
   };
 
   handleClose = () => {
-    console.log(this.props.user);
     this.props.dispatch(closeNavMenuAction());
   };
 
