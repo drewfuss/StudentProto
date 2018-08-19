@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+
 const config = {
   apiKey: "AIzaSyBreuIjIYw9GiGl8TWyzPKbOAjHN9AHbtI",
   authDomain: "studentdev-d593e.firebaseapp.com",
@@ -9,7 +10,13 @@ const config = {
   };
 firebase.initializeApp(config);
 
+const settings = {/* your settings... */ timestampsInSnapshots: true};
+let test = firebase.firestore();
+test.settings(settings);
+
+
 export const auth = firebase.auth();
 export default firebase;
 export const googleAuth = new firebase.auth.GoogleAuthProvider();
 export const facebookAuth = new firebase.auth.FacebookAuthProvider();
+export const db = test;
