@@ -8,12 +8,11 @@ import Funded from './funded';
 import Error from './error';
 import Header from './views/header';
 import Contact from './contact';
-import firebase, {auth} from './../backend/firebase.js';
+import firebase, {auth, db} from './../backend/firebase.js';
 import Theme from './views/styles/headerTheme';
 import { MuiThemeProvider} from '@material-ui/core/styles';
 import {connect} from 'react-redux';
-import {authenticated, unauthenticated, onautherror} from './../actions/actions.js';
-
+import {authenticated, unauthenticated, onautherror, onUpdateTotalDon} from './../actions/actions.js';
 
 
 class Router extends Component {
@@ -67,7 +66,13 @@ class Router extends Component {
 
   componentWillMount()
   {
-
+    db.collection("meta").doc("donations")
+    .onSnapshot({
+        // Listen for document metadata changes
+        includeMetadataChanges: true
+    }, function(doc) {
+      this.props.dispatch((onUpdateTotalDon(doc.data().totalDonations)));
+    }.bind(this));
   }
 
   render()
@@ -79,13 +84,11 @@ class Router extends Component {
             <Header />
           </MuiThemeProvider>
           <Switch>
-            <Route exact path="/donate" component = {() => <Donate user={this.state.user} />}/>
+            <Route exact path="/donate" component = {() =>          <MuiThemeProvider theme={Theme}> <Donate total={this.props.totalDon} user={this.state.user} /></MuiThemeProvider>}/>
             <Route exact path="/" component = {() => <Donate user={this.state.user} />}/>
             <Route exact path="/news" component = {News}/>
             <Route exact path="/about" component = {About}/>
             <Route exact path="/auth" component = {() => <Auth login={this.login} logout={this.logout}/>}/>
-            <Route exact path="/funded" component = {Funded}/>
-            <Route exact path="/contact" component = {Contact}/>
             <Route path="*" component={Error} />
           </Switch>
         </div>
@@ -97,7 +100,8 @@ class Router extends Component {
 const mapStateToProps = (state) =>
 {
   return {
-    user:state.user
+    user:state.user,
+    totalDon:state.totalDon
   };
 }
 

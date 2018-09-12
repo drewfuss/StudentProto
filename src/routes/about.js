@@ -10,7 +10,6 @@ class About extends Component
     return (
       <div>
         <Body />
-        <Footer />
       </div>
     )
   }

@@ -15,7 +15,6 @@ class News extends Component
     return (
       <div>
         <Body />
-        <Footer />
       </div>
     )
   }

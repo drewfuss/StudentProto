@@ -42,17 +42,14 @@ class Header extends Component
           <AppBar position="static">
             <Center>
             <Toolbar>
-            <Link to={'/funded'} style={{ textDecoration: 'none', color:'white' }}>
-               <Button className='btnHeader' ><Typography color="secondary">Funded</Typography></Button>
-            </Link>
-            <Link to={'/news'} style={{ textDecoration: 'none', color:'white' }}>
-               <Button className='btnHeader' ><Typography color="secondary">News</Typography></Button>
+            <Link to={'/about'} style={{ textDecoration: 'none', color:'white' }}>
+               <Button className='btnHeader' ><Typography color="secondary">Why Donate?</Typography></Button>
             </Link>
             <Link to={'/donate'} style={{ textDecoration: 'none', color:'white' }}>
                <Button className='btnHeader' variant="extendedFab" color="secondary" aria-label="Delete"><Typography color="primary">Donate</Typography></Button>
             </Link>
-            <Link to={'/about'} style={{ textDecoration: 'none', color:'white' }}>
-               <Button className='btnHeader' ><Typography color="secondary">How It Works</Typography></Button>
+            <Link to={'/news'} style={{ textDecoration: 'none', color:'white' }}>
+               <Button className='btnHeader' ><Typography color="secondary">News</Typography></Button>
             </Link>
             <IconButton
               className='btnHeader'

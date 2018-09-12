@@ -21,12 +21,9 @@ class Body extends Component
     return (
       <Grid>
       <Row>
-      <Col mdOffset={1} md={6} smOffset={1} sm={10}>
-        <Doner live={this.props.live} update = {this.props.update}/>
-      </Col>
-      <Col mdOffset={1} md={3} smOffset={1} sm={10}>
-        <Menu doners={this.props.onDeck}/>
-      </Col>
+        <Col mdOffset={1} md={4} smOffset={1} sm={10}>
+          <Doner />
+        </Col>
       </Row>
       </Grid>
     )

@@ -5,7 +5,16 @@ h1 {
   display: inline;
   text-align: center;
 }
+#btnDonate {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
 .progress {
   margin-top: 10px;
+}
+
+#thePanel
+{
+  margin-bottom: 50px;
 }

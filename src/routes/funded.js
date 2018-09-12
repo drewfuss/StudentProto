@@ -10,7 +10,6 @@ class Funded extends Component
     return (
       <div>
         <Body />
-        <Footer />
       </div>
     )
   }

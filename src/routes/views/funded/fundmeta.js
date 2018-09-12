@@ -30,7 +30,7 @@ class FundMeta extends Component
 
   render()
   {
-    /*        <Typography color="primary">
+    /*      <Typography color="primary">
               <strong>Total People Funded: </strong>{this.props.totalFun}
             </Typography>*/
     return (

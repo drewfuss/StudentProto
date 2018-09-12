@@ -7,6 +7,5 @@ import Footer from './views/footer';
 export default () => (
   <div>
     <Body />
-    <Footer />
   </div>
 )

@@ -14,7 +14,6 @@ class Auth extends Component
     return (
       <div>
         <Body login={this.props.login} />
-        <Footer />
       </div>
     )
   }
