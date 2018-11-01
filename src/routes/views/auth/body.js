@@ -18,10 +18,10 @@ class Body extends Component
     this.updatePassword = this.updatePassword.bind(this);
   }
 
-  componentDidMount()
+  /*componentDidMount()
   {
     this.props.dispatch(closeNavMenuAction());
-  }
+  }*/
 
   showProfile()
   {

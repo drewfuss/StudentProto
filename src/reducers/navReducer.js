@@ -6,7 +6,7 @@ const initialState = {
   totalFun:0
 };
 
-export const authReducer = (state = initialState, action) =>
+export default function reducer(state = initialState, action) 
 {
   switch(action.type)
   {

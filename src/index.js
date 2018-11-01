@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Route from './routes/router.js';
 import registerServiceWorker from './registerServiceWorker';
-import {combineReducers, createStore} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
+import logger from 'redux-logger';
 import {Provider} from 'react-redux';
-import {authReducer} from './reducers/navReducer.js';
+import reducer from './reducers/navReducer';
 
-const store = createStore(authReducer);
+const middleware = applyMiddleware(logger);
+const store = createStore(reducer, middleware);
 
 ReactDOM.render(
   <Provider store={store}>
